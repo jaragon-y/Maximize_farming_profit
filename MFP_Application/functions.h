@@ -1,7 +1,6 @@
 /* 
  * File:   functions.h
  * Author: Joaquín Arturo Aragon Yauris
- * Codigo: 20181252
  * Created on 28 de abril de 2021, 09:47 PM
  */
 
