@@ -10,9 +10,10 @@
 #include <fstream>
 #include <iostream>
 
-int read_data(double *&loss,double *&profit,double &cap);
+int read_data(double *&loss,double *&profit,int &lev,double &cap,const char *);
 void mergeSort(double *profit,double *loss,int l,int r);
 void merge(double arr[],double arr2[],int l, int m, int r);
+void print_results(int *results,double *profit,double *loss,int n_results);
 
 #endif /* FUNCTIONS_H */
 

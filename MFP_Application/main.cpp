@@ -7,16 +7,20 @@
 #include <iostream>
 #include <iomanip>
 #include "functions.h"
+#include "mfp_algorithms.h"
 using namespace std;
 
 int main(int argc, char** argv) {
     double *loss,*profit,capital;
-    int n;
+    int n,level,*results,n_results;
     //read_Data
-    n = read_data(loss,profit,capital);
+    n = read_data(loss,profit,level,capital,"Data.txt");
     //sort_Data
     mergeSort(profit,loss,0,n-1);
-    //for(int i =0;i<n;i++)cout<<"profit = "<<setw(8)<<setprecision(2)<<fixed<<profit[i]<<endl;
+    //get_Results
+    results = get_results(profit,loss,level,capital,n,n_results);
+    //print_Results
+    print_results(results,profit,loss,n_results);
     return 0;
 }
 

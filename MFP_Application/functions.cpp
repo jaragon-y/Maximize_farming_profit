@@ -6,14 +6,14 @@
 #include "functions.h"
 using namespace std;
 
-int read_data(double *&loss,double *&profit,double &cap){
-    ifstream Arch("Data.txt",ios::in);if(!Arch){cout<<"Data is not found"<<endl;exit(1);}
+int read_data(double *&loss,double *&profit,int &lev,double &cap,const char *file_name){
+    ifstream Arch(file_name,ios::in);if(!Arch){cout<<"Data is not found"<<endl;exit(1);}
     double performance,sale_price;
     double crop,seed;
     double land_treaty,time_treaty,workforce_price,capital;
     double buffer1[100],buffer2[100];
-    int n;
-    Arch>>n>>capital;
+    int n,level;
+    Arch>>n>>level>>capital;
     loss = new double [n+1];
     profit = new double [n+1];
     for(int i=0;i<n;i++){
@@ -22,6 +22,7 @@ int read_data(double *&loss,double *&profit,double &cap){
             profit[i]=(performance*sale_price*1000)-loss[i];
     }
     cap = capital;
+    lev = level;
     return n;
 }
 void mergeSort(double *profit,double *loss,int l,int r){
@@ -71,4 +72,15 @@ void merge(double arr[],double arr2[],int l, int m, int r){
         j++;
         k++;
     }
+}
+
+void print_results(int *results,double *profit,double *loss,int n_results){
+    double p = 0, l = 0;
+    for(int i=0;i<n_results;i+=2){
+        cout<<"index : "<<results[i]<<" with N = "<<results[i+1]<<endl;
+        p += profit[results[i]]*results[i+1];
+        l += loss[results[i]]*results[i+1];
+    }
+    cout<<"Max Profit = "<<p<<endl;
+    cout<<"Total Cost = "<<l<<endl;
 }
